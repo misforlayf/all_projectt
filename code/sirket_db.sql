@@ -1,0 +1,99 @@
+CREATE DATABASE sirket;
+USE sirket;
+
+CREATE TABLE birim(
+birim_no INT IDENTITY(1,1) PRIMARY KEY,
+birim_ad VARCHAR(20) UNIQUE NOT NULL
+);
+
+INSERT INTO birim VALUES ('KALÝTE'),('ÝDARÝ'),('ARGE'),('TEKNÝK');
+
+CREATE TABLE unvan(
+unvan_no INT IDENTITY(1,1) PRIMARY KEY,
+unvan_ad VARCHAR(15) UNIQUE NOT NULL
+);
+
+INSERT INTO unvan VALUES ('MÜHENDÝS'),('ÝK UZMANI'),('TEKNÝSYEN');
+
+CREATE TABLE il (
+il_no CHAR(2) PRIMARY KEY,
+il_ad VARCHAR(20) UNIQUE NOT NULL
+);
+
+INSERT INTO il VALUES ('06','ANKARA'),('34','ÝSTANBUL'),('35','ÝZMÝR');
+
+CREATE TABLE ilce (
+ilce_no INT IDENTITY(1,1) PRIMARY KEY,
+ilce_ad VARCHAR(20) NOT NULL,
+il_no CHAR(2) NOT NULL REFERENCES il(il_no),
+CONSTRAINT ilceTekil UNIQUE (ilce_ad,il_no)
+);
+
+INSERT INTO ilce VALUES ('ÇANKAYA','06'),('POLATLI','06'),('YENÝMAHALLE','06'),('AVCILAR','34'),
+('BEYLÝKDÜZÜ','34'),('ESENYURT','34'),('BUCA','35'),('KARÞIYAKA','35'),('KONAK','35');
+
+CREATE TABLE proje(
+proje_no INT IDENTITY(1,1) PRIMARY KEY,
+proje_ad VARCHAR(20) UNIQUE NOT NULL,
+baslama_tarihi DATE NOT NULL,
+planlanan_bitis_tarihi DATE NOT NULL
+);			
+
+INSERT INTO proje VALUES 
+('TEMÝZ DÜNYA','2015.01.20','2017.01.11'),
+('GÜVENLÝ INTERNET','2017.05.15','2020.06.09'),
+('MUTLU ÞEHÝR','2017.07.11','2019.11.29'),
+('AKILLI EVLER','2018.02.10','2021.11.29'),
+('SESSÝZ ORTAM','2018.03.01','2019.11.29');
+
+CREATE TABLE personel (
+personel_no INT IDENTITY(1,1) PRIMARY KEY,
+ad VARCHAR(25) NOT NULL, 
+soyad VARCHAR(25) NOT NULL,
+cinsiyet CHAR(1) NOT NULL,
+dogum_tarihi DATE NOT NULL,
+dogum_yeri INT REFERENCES ilce(ilce_no) NOT NULL,
+baslama_tarihi date NOT NULL,
+birim_no INT REFERENCES birim(birim_no) NOT NULL,
+unvan_no INT REFERENCES unvan(unvan_no) NOT NULL,
+calisma_saati TINYINT NOT NULL,
+maas MONEY NOT NULL,
+prim MONEY DEFAULT 0
+);
+
+INSERT INTO personel VALUES
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350),
+('Ahmet','EKÝNCÝ','E','1985.03.25',2,'2002.03.01',5,1,35,2500,350);
+SELECT * FROM personel
+
